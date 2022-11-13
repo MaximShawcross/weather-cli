@@ -6,7 +6,7 @@ export const printError = (err) => {
 };
 
 export const printSuccess = (message) => {
-    console.log(`${chalk.bgGreenBright("SUCCESS")}: ${chalk.green(message)}`);
+    console.log(`${chalk.bgGreenBright("SUCCESS")}: ${chalk.whiteBright(message)}`);
 };
 
 export const printHelp = () => {
