@@ -3,14 +3,24 @@
 
 import { getArgs } from "./helpers/args.js";
 import { printError, printSuccess, printHelp} from "./services/log.service.js";
+import { saveKeyValue, getKey } from "./services/storage.service.js";
+
+const saveToken = async (token) => {
+    try {
+        await saveKeyValue("token", token);
+        printSuccess("Tokes was saved!");
+    } catch (error) {
+        printError(error.message);
+    }
+};
 
 const initCLI = () => {
     const args = getArgs(process.argv);
 
     // checking for command params
     if (args.h) printHelp();
-    if (args.h) printSuccess();
-    if (args.e) printError();
+    if (args.s) printSuccess();
+    if (args.t) saveToken(args.t);
 };
 
 initCLI(); 
