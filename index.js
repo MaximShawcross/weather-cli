@@ -3,31 +3,17 @@
 
 import axios from "axios";
 import { getArgs } from "./helpers/args.js";
-import { getWeather } from "./services/api.service.js";
+import { saveCity } from "./helpers/save-city.js";
+import { saveToken } from "./helpers/save-token.js";
 import { printError, printSuccess, printHelp} from "./services/log.service.js";
-import { saveKeyValue } from "./services/storage.service.js";
-
-const saveToken = async (token) => {
-    if(!token.length) {
-        printError("token is not define!");
-        return;
-    }
-
-    try {
-        await saveKeyValue("token", token);
-        printSuccess("Tokes was saved!");
-    } catch (error) {
-        printError(error.message);
-    }
-};
 
 const initCLI = () => {
     const args = getArgs(process.argv);
-    getWeather("kharkiv");
+    // getWeather("kharkiv");
     
     // checking for command params
     if (args.h) printHelp();
-    if (args.s) printSuccess(); 
+    if (args.c) saveCity(args.c); 
     if (args.t) saveToken(args.t);
 };
 
