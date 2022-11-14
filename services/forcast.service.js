@@ -1,6 +1,5 @@
-import { printError, printSuccess } from "./log.service.js";
+import { printError, printSuccess, outputService } from "./log.service.js";
 import { getWeather } from "./api.service.js";
-import { outputService } from "./output.service.js";
 
 export const getForecast = async (city) => {
     try {
